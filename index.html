@@ -17,6 +17,84 @@
             ];
             
             const people = ['Beck,Glenn','Becker,Carl','Beckett,Samuel','Beddoes,Mick','Beecher,Henery','Beethoven,Ludwig','Begin,Menachem','Bellow,Saul','Benchley,Robert','Benenson,Peter','Ben-Gurion,David','Benjamin,Walter','Benn,Tony','Bennington,Chester','Benson,Leana','Bent,Silas','Bentsen,Lloyd','Berger,Ric','Bergman,Ingmar','Berio,Luciano','Berle,Milton','Berlin,Irving','Berne,Eric','Bernhard,Sandra','Berra,Yogi','Berry,Halle','Berry,Wendell','Bethea,Erin','Bevan,Aneurin','Bevel,Ken','Biden,Joseph','Bierce,Ambrose','Biko,Steve','Billings,Josh','Biondo,Frank','Birrell,Augustine','Black,Elk','Blair,Robert','Blair,Tony','Blake,William'];
+            
+            //array prototype .filter()
+            //1- filter the list of inventors for those who were born in 1500's
+           /* const fifteen = inventors.filter(function(inventor){
+                if(inventor.year >= 1500 && inventor.year < 1600)
+                {
+                    return true; //keep it
+                }
+                
+            });
+            */
+             //as arrow function syntax :
+            const fifteen = inventors.filter(inventor => (inventor.year >= 1500 && inventor.year < 1600));
+            
+            console.table(fifteen);
+            
+            
+            //array prototype .map()
+            //what is map do ? map takes an array , it does something with that array and then returns a new array but of the same length
+            //2- Give us an array of the inventory first and last names
+            const fullnames = inventors.map(inventor => inventor.first +" "+ inventor.last);
+            console.table(fullnames);
+            
+            //array prototype .sort()
+            //3- Sort the inventors by birthdate, oldest to youngest
+            /*const ordered = inventors.sort(function(firstPerson,secondPerson){
+                if(firstPerson.year > secondPerson.year)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return -1;
+                }
+            });*/
+            
+            //as arrow function syntax :
+            const ordered = inventors.sort((firstPerson,secondPerson)=>firstPerson.year>secondPerson.year?1:-1);
+            console.table(ordered);
+            
+            //array prototype .reduce()
+            //4- how many years did all the inventors live?
+            const totalYears = inventors.reduce((total,inventor)=>{
+                return total + (inventor.passed - inventor.year);
+            },0);
+            console.log(totalYears);
+            
+            //5- Sort the inventors by years lived
+            const peoplesortion = inventors.sort(function(fb,sb){
+                const sp = fb.passed - fb.year;
+                const fp = sb.passed - sb.year;
+                return sp > fp ? -1:1;
+            });
+            console.table(peoplesortion);
+            
+            
+            //7- Sort Exercises
+            //Sort the people alphabically by the lastname
+            const alpha = people.sort(function(lastOne,nextOne){
+                const [alast,afirst] = lastOne.split(', ');
+                const [blast,bfirst] = nextOne.split(', ');
+                return alast > blast ? 1:-1;
+            });
+            console.table(alpha);
+            
+            //8- Reduce Exercises
+            //sum up the instance of each of this
+            const data = ['car','car','truck','truck','bike','walk','car','van','bike','walk','car','van','car','truck'];
+            const transportation = data.reduce(function(obj, item){
+                if(!obj[item])
+                {
+                    obj[item] = 0;
+                }
+                obj[item]++;
+                return obj;
+            },{});
+            console.table(transportation);
+            
         </script>
     </body>
 </html>
